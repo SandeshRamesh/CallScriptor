@@ -1,0 +1,32 @@
+# Node modules and package managers
+node_modules/
+.pnp/
+.pnp.js
+
+# Test coverage
+coverage/
+
+# Production build output (optional — keep if you're not manually editing /build)
+build/
+
+# OS & editor junk
+.DS_Store
+*.log
+
+# Environment files
+.env*
+!.env.example  # Keep a sample config if needed
+
+# VS Code settings (optional)
+.vscode/
+
+# Cache folders (optional)
+.cache/
+dist/
+
+# Ignore Python virtual environment
+env/
+venv/
+*/Lib/
+*/lib/
+speech-backend/STS/Lib/

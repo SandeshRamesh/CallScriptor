@@ -4,22 +4,31 @@ export function matchNextWords(
   spokenWord: string,
   targetWords: string[],
   startIndex: number,
-  windowSize = 3,
-  threshold = 0.85
+  windowSize = 7,
+  threshold = 0.7
 ): number {
+  const lowerSpoken = spokenWord.toLowerCase();
+
   for (let i = 0; i < windowSize; i++) {
-    const targetWord = targetWords[startIndex + i];
+    const compareIdx = startIndex + i;
+    const targetWord = targetWords[compareIdx];
+    //console.log(`[Matcher] Comparing "${lowerSpoken}" with "${targetWord}" at index ${compareIdx}`);
     if (!targetWord) continue;
 
+
     const similarity = stringSimilarity.compareTwoStrings(
-      spokenWord.toLowerCase(),
+      lowerSpoken,
       targetWord.toLowerCase()
     );
 
+    //console.log(`[Matcher] Comparing "${lowerSpoken}" ↔ "${targetWord.toLowerCase()}" = ${similarity.toFixed(2)}`);
+
     if (similarity >= threshold) {
-      return startIndex + i + 1; // return new target index
+      console.log(`[Matcher ✅] Match at index ${compareIdx} → advancing to ${compareIdx + 1}`);
+      return compareIdx + 1;
     }
   }
 
-  return startIndex; // no match found, don't advance
+  console.log(`[Matcher ❌] No match found for "${spokenWord}"`);
+  return startIndex;
 }

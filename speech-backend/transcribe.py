@@ -30,6 +30,40 @@ def callback(in_data, frame_count, time_info, status):
     return (None, pyaudio.paContinue)
 
 
+# # 🔍 Find VB-Audio input device
+# def find_vb_audio_input(p):
+#     for i in range(p.get_device_count()):
+#         info = p.get_device_info_by_index(i)
+#         if "VB-Audio" in info["name"] and info["maxInputChannels"] > 0:
+#             return i
+#     return None
+
+
+# # Initialize PyAudio
+# p = pyaudio.PyAudio()
+# vb_input_index = find_vb_audio_input(p)
+
+# if vb_input_index is None:
+#     print(json.dumps({"error": "VB-Audio input device not found"}))
+#     sys.exit(1)
+
+# # 🎤 Open stream from VB-Audio
+# try:
+#     stream = p.open(
+#         format=pyaudio.paInt16,
+#         channels=1,
+#         rate=SAMPLE_RATE,
+#         input=True,
+#         input_device_index=vb_input_index,
+#         frames_per_buffer=CHUNK_SIZE,
+#         stream_callback=callback,
+#     )
+# except Exception as e:
+#     print(json.dumps({"error": f"Failed to open VB-Audio device: {str(e)}"}))
+#     sys.exit(1)
+
+# stream.start_stream()
+
 # Initialize PyAudio
 p = pyaudio.PyAudio()
 try:

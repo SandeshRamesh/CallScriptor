@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Emotion Display</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 10px;
+      background-color: black;
+      color: white;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      -webkit-app-region: drag; /* makes the window draggable */
+    }
+
+    h1 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    #emotionDisplay {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Detected Emotion</h1>
+  <div id="emotionDisplay">Neutral</div>
+
+  <script>
+    window.electronAPI.onEmotionUpdate((emotion) => {
+      document.getElementById('emotionDisplay').innerText = emotion;
+    });
+  </script>
+</body>
+</html>

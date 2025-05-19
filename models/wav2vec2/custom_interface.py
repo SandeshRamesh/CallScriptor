@@ -1,0 +1,1 @@
+C:/Users/sande/Documents/Cluely/Speech-to-Script/my-electron-app/models/wav2vec2/C:/Users/sande/Documents/Cluely/Speech-to-Script/my-electron-app/models/wav2vec2/custom_interface.py

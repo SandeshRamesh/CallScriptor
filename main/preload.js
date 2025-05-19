@@ -8,4 +8,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   },
   chooseFile: () => ipcRenderer.invoke('show-open-dialog'),
   parseSalesScript: (filePath) => ipcRenderer.invoke('parse-sales-script', filePath),
+  getEmotion: () => ipcRenderer.invoke('get-emotion'),
+  onEmotionUpdate: (callback) => ipcRenderer.on('emotion-update', (_, emotion) => callback(emotion)),
+
 });

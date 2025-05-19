@@ -182,23 +182,46 @@ ipcMain.handle('get-emotion', async () => {
   });
 });
 
+ipcMain.on('objection-match', (event, matchData) => {
+  //console.log('[DEBUG] Objection match received in main.js:', matchData); // Make sure this is logged
+  if (mainWindow) {
+    mainWindow.webContents.send('objection-detected', matchData); // Sending the data to renderer
+  }
+});
+
+
 function startObjectionMatching() {
   const scriptPath = path.join(__dirname, '../speech-backend/objection_transcribe.py');
 
   objectionProcess = spawn('python', [scriptPath]);
 
   objectionProcess.stdout.on('data', (data) => {
-    const output = data.toString().trim();
-    if (output.length > 0) {
-      console.log('[Objection]', output);
-      // TODO: You could send this to frontend if you want:
-      // mainWindow.webContents.send('objection-match', output);
-    }
-  });
+  const output = data.toString().trim();
+  console.log('[DEBUG] Python Output from Objection Transcription:', output);  // Debug log
 
-  objectionProcess.stderr.on('data', (data) => {
-    console.error('[Objection STDERR]', data.toString());
-  });
+  if (output.length > 0) {
+    try {
+      const match = JSON.parse(output);  // Parse the JSON output from Python
+      console.log('[DEBUG] Parsed Objection Match:', match);  // Log the parsed match
+      if (mainWindow) {
+        //console.log('[DEBUG] mainWindow is available. Sending match data...');
+        mainWindow.webContents.send('objection-detected', match);  // Send match data to frontend
+      }
+      else {
+        console.log('[ERROR] mainWindow is not available!');
+    }
+    } catch (err) {
+      console.log('[ERROR] Failed to parse match:', err);
+      console.log('[ERROR] Raw Output:', output);  // Log the raw output
+    }
+  }
+});
+
+
+
+  // objectionProcess.stderr.on('data', (data) => {
+  //   console.error('[Objection STDERR]', data.toString());
+  // });
 
   objectionProcess.on('close', (code) => {
     console.log(`[Objection process exited with code ${code}]`);

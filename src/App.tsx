@@ -2,11 +2,18 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useTranscriptMatcher } from './hooks/useTranscriptMatcher';
 import { matchNextWords } from './utils/matchNextWords';
 
+interface ObjectionMatch {
+  label: string;
+  trigger: string;
+  response: string;
+}
+
 export default function App() {
   const [highlightIdx, setHighlightIdx] = useState(0);
   const [transcript, setTranscript] = useState('');
   const [rawScriptLines, setRawScriptLines] = useState<string[]>([]);
   const [cleanScriptWords, setCleanScriptWords] = useState<string[]>([]);
+  const [objection, setObjection] = useState<ObjectionMatch | null>(null);
   const bufferRef = useRef('');
 
   // 🔁 Hook that sets up live transcription and matching logic
@@ -16,6 +23,24 @@ export default function App() {
     setTranscript,
     bufferRef,
   });
+
+  // 🧠 Listen for objection match events
+  useEffect(() => {
+
+    console.log('[DEBUG] useEffect running');
+
+    if (window?.electronAPI?.onObjectionDetected) {
+    //console.log('[DEBUG] onObjectionDetected available');
+
+    window.electronAPI.onObjectionDetected((matchData) => {
+      console.log('[DEBUG] Objection match data received in React:', matchData);  // Debug log
+      setObjection(matchData);
+    });
+
+  } else {
+    console.warn('[DEBUG] electronAPI.onObjectionDetected is not available');
+  }
+}, []);
 
   // 📂 Upload Handler
   const handleFileChoose = async () => {
@@ -89,6 +114,14 @@ export default function App() {
           </div>
         );
       })}
+
+      {/* Objection Debug */}
+      {objection && (
+        <div style={{ marginTop: 40, padding: 20, backgroundColor: '#222', border: '1px solid #555' }}>
+          <h2 style={{ color: 'red' }}>Objection Detected: {objection.label}</h2>
+          <p style={{ color: 'white' }}>{objection.response}</p>
+        </div>
+      )}
     </div>
   );
 }

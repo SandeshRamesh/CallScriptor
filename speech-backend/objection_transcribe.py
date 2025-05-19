@@ -65,7 +65,7 @@ stream = p.open(
 stream.start_stream()
 
 # --- Main Loop ---
-print("[READY] Real-time objection listener started.", flush=True)
+# print("[READY] Real-time objection listener started.", flush=True)
 
 
 try:
@@ -90,13 +90,13 @@ try:
                     #     f"[DEBUG] Compared to: {trig} -> Score: {score:.2f}", flush=True
                     # )
                     if score > THRESHOLD:
-                        match_info = {
+                        matchData = {
                             "label": label,
                             "trigger": trig,
                             "response": obj["response"],
                         }
                         print(
-                            f"[MATCH] {json.dumps(match_info)}", flush=True
+                            json.dumps(matchData), flush=True
                         )  # Send match data to Electron
                         matched = True
                         break

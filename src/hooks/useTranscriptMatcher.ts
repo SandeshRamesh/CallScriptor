@@ -20,12 +20,12 @@ export function useTranscriptMatcher({
     console.log('[Init] Setting up transcription listener');
 
     window.electronAPI.onTranscription((newText: string) => {
-      console.log('[Transcription Event] Raw input:', newText);
+      //console.log('[Transcription Event] Raw input:', newText);
 
       try {
         const parsed = JSON.parse(newText);
         const spokenText = parsed.partial || parsed.text || '';
-        console.log('[Parsed Transcription]', spokenText);
+        //console.log('[Parsed Transcription]', spokenText);
 
         const newWords = spokenText
           .replace(/[-'.,!?]/g, '') // include hyphens and apostrophes

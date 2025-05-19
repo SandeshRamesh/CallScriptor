@@ -30,3 +30,4 @@ venv/
 */Lib/
 */lib/
 speech-backend/STS/Lib/
+speech-backend/wav2vec2_checkpoints/

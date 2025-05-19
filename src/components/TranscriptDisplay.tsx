@@ -1,15 +1,16 @@
-// components/ScriptDisplay.tsx
-interface Props {
-  lines: string[];
+import React from 'react';
+
+interface TranscriptDisplayProps {
+  scriptLines: string[];
   highlightIdx: number;
 }
 
-export function ScriptDisplay({ lines, highlightIdx }: Props) {
+export const TranscriptDisplay: React.FC<TranscriptDisplayProps> = ({ scriptLines, highlightIdx }) => {
   let wordCount = 0;
 
   return (
-    <>
-      {lines.map((line, lineIdx) => {
+    <div>
+      {scriptLines.map((line, lineIdx) => {
         const words = line.trim().split(' ');
         return (
           <div key={lineIdx} style={{ marginBottom: 12 }}>
@@ -30,6 +31,6 @@ export function ScriptDisplay({ lines, highlightIdx }: Props) {
           </div>
         );
       })}
-    </>
+    </div>
   );
-}
+};

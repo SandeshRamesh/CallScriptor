@@ -24,11 +24,11 @@ export function matchNextWords(
     //console.log(`[Matcher] Comparing "${lowerSpoken}" ↔ "${targetWord.toLowerCase()}" = ${similarity.toFixed(2)}`);
 
     if (similarity >= threshold) {
-      console.log(`[Matcher ✅] Match at index ${compareIdx} → advancing to ${compareIdx + 1}`);
+      //console.log(`[Matcher ✅] Match at index ${compareIdx} → advancing to ${compareIdx + 1}`);
       return compareIdx + 1;
     }
   }
 
-  console.log(`[Matcher ❌] No match found for "${spokenWord}"`);
+  //console.log(`[Matcher ❌] No match found for "${spokenWord}"`);
   return startIndex;
 }

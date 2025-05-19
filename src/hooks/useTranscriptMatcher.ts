@@ -20,15 +20,12 @@ export function useTranscriptMatcher({
     console.log('[Init] Setting up transcription listener');
 
     window.electronAPI.onTranscription((newText: string) => {
-      //console.log('[Transcription Event] Raw input:', newText);
-
       try {
         const parsed = JSON.parse(newText);
         const spokenText = parsed.partial || parsed.text || '';
-        //console.log('[Parsed Transcription]', spokenText);
 
         const newWords = spokenText
-          .replace(/[-'.,!?]/g, '') // include hyphens and apostrophes
+          .replace(/[-'.,!?]/g, '')
           .split(' ')
           .filter(Boolean);
 
@@ -36,14 +33,14 @@ export function useTranscriptMatcher({
         if (!lastWord) return;
 
         const newIdx = matchNextWords(lastWord, flatScriptWords, maxHighlightRef.current);
-        console.log(`[Matcher] Last word: "${lastWord}" → idx: ${newIdx} (current: ${maxHighlightRef.current})`);
+        //console.log(`[Matcher] Last word: "${lastWord}" → idx: ${newIdx} (current: ${maxHighlightRef.current})`);
 
         if (newIdx > maxHighlightRef.current) {
           maxHighlightRef.current = newIdx;
           setHighlightIdx(newIdx);
-          console.log(`[Highlight ✅] Advanced to ${newIdx}`);
+          //console.log(`[Highlight ✅] Advanced to ${newIdx}`);
         } else {
-          console.log(`[Highlight ⛔️] Ignored regression or duplicate (current: ${maxHighlightRef.current}, proposed: ${newIdx})`);
+          //console.log(`[Highlight ⛔️] Ignored regression or duplicate (current: ${maxHighlightRef.current}, proposed: ${newIdx})`);
         }
 
         bufferRef.current = spokenText;

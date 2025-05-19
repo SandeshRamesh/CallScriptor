@@ -24,9 +24,9 @@ MODEL_PATH = os.path.abspath("speech-backend/models/wav2vec2")
 
 p = pyaudio.PyAudio()
 # print("[DEBUG] Listing input devices...")
-for i in range(p.get_device_count()):
-    dev = p.get_device_info_by_index(i)
-    print(f"{i}: {dev['name']} | Input Channels: {dev['maxInputChannels']}")
+# for i in range(p.get_device_count()):
+#     dev = p.get_device_info_by_index(i)
+#     print(f"{i}: {dev['name']} | Input Channels: {dev['maxInputChannels']}")
 
 
 classifier = foreign_class(
@@ -94,7 +94,7 @@ def detect_emotion(file_path):
     if isinstance(label, list):
         label = label[0]
 
-    print(label)
+    # print(label)
     return label
 
 

@@ -1,0 +1,143 @@
+{
+  "script_lines": [
+    "Hi Robert, I'm Sandesh from Cluely - appreciate you hopping on.",
+    "My job today it to show you how our AI software helps sales teams sell smarter on Zoom - especially newer reps - by giving them the script, live, while they're on the call.",
+    "Ready to Go?",
+    "Let me ask - how are you currently making sure reps stick to the script during calls?",
+    "Do you feel like your newer reps are confident handling objections in real time?",
+    "How are you currently tracking whether your team is following the script or going off-track?",
+    "Here's what we've built: imagine your reps are on Zoom, and the script appears live - line by line - as they're speaking.",
+    "If the prospect throws an objection like 'I need to think about it,' the AI instantly detects it and pulls the right script response on-screen - so the rep knows exactly what to say.",
+    "Managers love it because it standardizes calls and gives visibility into which reps are sticking to the process.",
+    "It works right out of the box with Zoom - no dev work required.",
+    "Let me show you the live interface - here's what the rep sees on Zoom: script at the top, objection handler slides in when needed.",
+    "Do you have any questions for me before we move forward? (Keep asking)",
+    "Mind if I walk you through the pricing and onboarding process?",
+    "Most teams that see the demo move forward - especially when they're scaling or onboarding new reps.",
+    "We get you set up in under 24 hours, with your script and objection library already loaded. Our pricing is either $3,000 for the full startup package or $1,000 for a do it yourself script with tutorials we provide.",
+    "When you're ready, I'll send you a quick digital agreement and get our onboarding team scheduled.",
+    "You'll get a recap email with everything we covered, plus the agreement link.",
+    "Once you're signed up, we'll customize your scripts, set up your team, and do a live walkthrough with your managers.",
+    "Looking forward to helping your team win more calls!"
+  ],
+  "objections": [
+    {
+      "label": "I DON'T WANT TO COMMIT TODAY",
+      "triggers": [
+        "i need to think about it",
+        "i'm not ready to buy",
+        "i'm not sure yet",
+        "let me sleep on it"
+      ],
+      "keywords": [
+        "about",
+        "buy",
+        "let",
+        "need",
+        "not",
+        "ready",
+        "sleep",
+        "sure",
+        "think",
+        "yet"
+      ],
+      "response": " \"Absolutely - I wouldn't want you to buy today without knowing what it is we actually offer. That'd be like throwing money in the garbage.\n My job is just to walk you through everything, show you the product, and then let you make up your own mind.\""
+    },
+    {
+      "label": "CAN'T WE JUST USE CHATGPT FOR THAT?",
+      "triggers": [
+        "we already use chatgpt",
+        "can't i just use gpt?",
+        "why build something when gpt exists?",
+        "i can do this with openai"
+      ],
+      "keywords": [
+        "already",
+        "build",
+        "can",
+        "chatgpt",
+        "exists",
+        "gpt",
+        "just",
+        "openai",
+        "something",
+        "this",
+        "use",
+        "when",
+        "why",
+        "with"
+      ],
+      "response": " \"Great question - ChatGPT is powerful, but what we've built is tailored for live Zoom sales.\n It listens to both sides of the conversation, triggers the right parts of your script, and guides reps moment-by-moment. That's not something GPT can do out of the box - and it takes a ton of work to build that in-house.\""
+    },
+    {
+      "label": "WE'RE NOT HIRING ANY NEW REPS RIGHT NOW",
+      "triggers": [
+        "we're not growing",
+        "we're not adding anyone",
+        "we have a small team",
+        "no new hires planned"
+      ],
+      "keywords": [
+        "adding",
+        "anyone",
+        "growing",
+        "have",
+        "hires",
+        "new",
+        "not",
+        "planned",
+        "small",
+        "team"
+      ],
+      "response": " \"That actually makes it more useful - small teams benefit most from consistency.\n This lets even your most junior rep sound like your best one. And for busy teams, it means less time shadowing, more time closing.\""
+    },
+    {
+      "label": "IT SOUNDS LIKE OVERKILL",
+      "triggers": [
+        "seems like a lot",
+        "isn't this too much tech?",
+        "this might be overkill",
+        "i think this is excessive"
+      ],
+      "keywords": [
+        "excessive",
+        "isn",
+        "like",
+        "lot",
+        "might",
+        "much",
+        "overkill",
+        "seems",
+        "tech",
+        "think",
+        "this",
+        "too"
+      ],
+      "response": " \"I hear that - but in reality, it's like a GPS for sales calls.\n The best reps still drive the conversation - this just makes sure no one takes a wrong turn, and managers finally get a dashboard to guide performance.\""
+    },
+    {
+      "label": "THATS WAY TOO EXPENSIVE",
+      "triggers": [
+        "that's too expensive",
+        "that's out of my price range",
+        "this costs too much",
+        "i can't afford that"
+      ],
+      "keywords": [
+        "afford",
+        "can",
+        "costs",
+        "expensive",
+        "much",
+        "out",
+        "price",
+        "range",
+        "that",
+        "this",
+        "too"
+      ],
+      "response": "\"If you were guaranteed to close an extra 6 deals this month would that justify the price for you? Well fantastic, based on our pre-screening if you don't do that, given our terms and conditions, like allowing us to review the sales sessions, then we have a full money back guarantee.\""
+    }
+  ],
+  "script": "\ufeff\u2600\ufe0f AI-READY SALES SCRIPT: SALES ENABLEMENT AI SOFTWARE (Zoom Sales Tool)\n Offer:\n\u25cf AI-powered sales tool for Zoom calls\n\n\u25cf Live script overlay for new reps - ensures word-for-word compliance\n\n\u25cf Real-time objection detection + instant response suggestions\n\n\u25cf Improves conversion rates, manager oversight, and onboarding speed\n\n\u25cf No code, integrates with Zoom in minutes\n\n\n\ud83d\udc4b 1. INTRODUCTION\n\ud83d\udd32 \"Hi Robert, I'm Sandesh from Cluely - appreciate you hopping on.\"\n \ud83d\udd32 \"My job today it to show you how our AI software helps sales teams sell smarter on Zoom - especially newer reps - by giving them the script, live, while they're on the call.\"\n \ud83d\udd32 \"Ready to Go?\"\n\n\ud83d\udcac 2. DISCOVERY - PROBLEM SETUP\n\ud83d\udd32 \"Let me ask - how are you currently making sure reps stick to the script during calls?\"\n \ud83d\udd32 \"Do you feel like your newer reps are confident handling objections in real time?\"\n \ud83d\udd32 \"How are you currently tracking whether your team is following the script or going off-track?\"\n\n\n\ud83c\udfaf 3. POSITIONING - WHY US, WHY NOW\n\ud83d\udd32 \"Here's what we've built: imagine your reps are on Zoom, and the script appears live - line by line - as they're speaking.\"\n \ud83d\udd32 \"If the prospect throws an objection like 'I need to think about it,' the AI instantly detects it and pulls the right script response on-screen - so the rep knows exactly what to say.\"\n \ud83d\udd32 \"Managers love it because it standardizes calls and gives visibility into which reps are sticking to the process.\"\n \ud83d\udd32 \"It works right out of the box with Zoom - no dev work required.\"\n\n\ud83e\udde0 4. ENGAGEMENT - LIVE DEMO + PERMISSION\n\ud83d\udd32 \"Let me show you the live interface - here's what the rep sees on Zoom: script at the top, objection handler slides in when needed.\"\n \ud83d\udd32 \"Do you have any questions for me before we move forward? (Keep asking)\"\n \ud83d\udd32 \"Mind if I walk you through the pricing and onboarding process?\"\n\n\u2705 5. CLOSE - GET AGREEMENT SIGNED\n\ud83d\udd32 \"Most teams that see the demo move forward - especially when they're scaling or onboarding new reps.\"\n \ud83d\udd32 \"We get you set up in under 24 hours, with your script and objection library already loaded. Our pricing is either $3,000 for the full startup package or $1,000 for a do it yourself script with tutorials we provide.\"\n \ud83d\udd32 \"When you're ready, I'll send you a quick digital agreement and get our onboarding team scheduled.\"\n\n\ud83d\udc4b 6. GOODBYE - NEXT STEPS\n\ud83d\udd32 \"You'll get a recap email with everything we covered, plus the agreement link.\"\n \ud83d\udd32 \"Once you're signed up, we'll customize your scripts, set up your team, and do a live walkthrough with your managers.\"\n \ud83d\udd32 \"Looking forward to helping your team win more calls!\"\n\n\u2757 OBJECTION HANDLING LIBRARY\nThese are triggered live by the AI when keywords are detected in the prospect's voice.\n\n\u26d4 \"I DON'T WANT TO COMMIT TODAY\"\nTrigger: \"i need to think about it\" / \"i'm not ready to buy\" / \"i'm not sure yet\" / \"let me sleep on it\"\n \u2705 Response:\n \"Absolutely - I wouldn't want you to buy today without knowing what it is we actually offer. That'd be like throwing money in the garbage.\n My job is just to walk you through everything, show you the product, and then let you make up your own mind.\"\n\n\u26d4 \"CAN'T WE JUST USE CHATGPT FOR THAT?\"\nTrigger: \"we already use chatgpt\" / \"can't i just use gpt?\" / \"why build something when gpt exists?\" / \"i can do this with openai\"\n \u2705 Response:\n \"Great question - ChatGPT is powerful, but what we've built is tailored for live Zoom sales.\n It listens to both sides of the conversation, triggers the right parts of your script, and guides reps moment-by-moment. That's not something GPT can do out of the box - and it takes a ton of work to build that in-house.\"\n\n\u26d4 \"WE'RE NOT HIRING ANY NEW REPS RIGHT NOW\"\nTrigger: \"we're not growing\" / \"we're not adding anyone\" / \"we have a small team\" / \"no new hires planned\"\n \u2705 Response:\n \"That actually makes it more useful - small teams benefit most from consistency.\n This lets even your most junior rep sound like your best one. And for busy teams, it means less time shadowing, more time closing.\"\n\n\u26d4 \"IT SOUNDS LIKE OVERKILL\"\nTrigger: \"seems like a lot\" / \"isn't this too much tech?\" / \"this might be overkill\" / \"i think this is excessive\"\n \u2705 Response:\n \"I hear that - but in reality, it's like a GPS for sales calls.\n The best reps still drive the conversation - this just makes sure no one takes a wrong turn, and managers finally get a dashboard to guide performance.\"\n\n\u26d4 \"THATS WAY TOO EXPENSIVE\"\nTrigger: \"that's too expensive\" / \"that's out of my price range\" / \"this costs too much\" / \"i can't afford that\"\n \u2705 Response:\n\"If you were guaranteed to close an extra 6 deals this month would that justify the price for you? Well fantastic, based on our pre-screening if you don't do that, given our terms and conditions, like allowing us to review the sales sessions, then we have a full money back guarantee.\"\n"
+}

@@ -1,11 +1,14 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 const { spawn } = require('child_process');
+const fs = require('fs');
+
 
 let mainWindow;
 let emotionWindow;
 let transcribeProcess = null; // 🔄 Keep reference to transcription process
 let emotionProcess;
+let objectionProcess;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -60,9 +63,9 @@ function startTranscription() {
     }
   });
 
-  transcribeProcess.stderr.on('data', (data) => {
-    console.error('[Transcription STDERR]:', data.toString());
-  });
+  // transcribeProcess.stderr.on('data', (data) => {
+  //   console.error('[Transcription STDERR]:', data.toString());
+  // });
 
   transcribeProcess.on('close', (code) => {
     console.log(`Transcription process exited with code ${code}, signal: ${signal}`);
@@ -80,6 +83,7 @@ app.whenReady().then(() => {
   createWindow();
   createEmotionWindow();
   startEmotionStream(); // ✅ runs once
+  
 
   app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
@@ -116,15 +120,30 @@ ipcMain.handle('parse-sales-script', async (event, filePath) => {
     let output = '';
     let error = '';
 
-    py.stdout.on('data', (data) => (output += data.toString()));
-    py.stderr.on('data', (data) => (error += data.toString()));
+    py.stdout.on('data', (data) => {
+      output += data.toString();
+    });
+
+    py.stderr.on('data', (data) => {
+      error += data.toString();
+    });
 
     py.on('close', (code) => {
       if (code !== 0 || error) {
         console.error('Parser STDERR:', error);
         reject(error || `Exited with code ${code}`);
       } else {
-        resolve(output); // Still returns a stringified JSON
+        try {
+          fs.writeFileSync(
+            path.join(__dirname, '../speech-backend/last_script.json'),
+            output
+          );
+          startObjectionMatching(); // ✅ now linked
+          resolve(output);
+        } catch (err) {
+          console.error('Failed to write last_script.json:', err);
+          reject(err);
+        }
       }
     });
 
@@ -134,6 +153,7 @@ ipcMain.handle('parse-sales-script', async (event, filePath) => {
     });
   });
 });
+
 
 ipcMain.handle('get-emotion', async () => {
   return new Promise((resolve, reject) => {
@@ -161,6 +181,34 @@ ipcMain.handle('get-emotion', async () => {
     });
   });
 });
+
+function startObjectionMatching() {
+  const scriptPath = path.join(__dirname, '../speech-backend/objection_transcribe.py');
+
+  objectionProcess = spawn('python', [scriptPath]);
+
+  objectionProcess.stdout.on('data', (data) => {
+    const output = data.toString().trim();
+    if (output.length > 0) {
+      console.log('[Objection]', output);
+      // TODO: You could send this to frontend if you want:
+      // mainWindow.webContents.send('objection-match', output);
+    }
+  });
+
+  objectionProcess.stderr.on('data', (data) => {
+    console.error('[Objection STDERR]', data.toString());
+  });
+
+  objectionProcess.on('close', (code) => {
+    console.log(`[Objection process exited with code ${code}]`);
+    objectionProcess = null;
+  });
+
+  objectionProcess.on('error', (err) => {
+    console.error('[Objection ERROR]', err);
+  });
+}
 
 function startEmotionStream() {
   const scriptPath = path.join(__dirname, '../speech-backend/emotion.py');

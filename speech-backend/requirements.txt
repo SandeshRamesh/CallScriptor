@@ -2,8 +2,5 @@ vosk==0.3.45
 pyaudio==0.2.13
 torch>=1.9.0
 torchaudio>=0.9.0
-numpy
-scikit-learn
-matplotlib
-imblearn
-plotly
+transformers torch
+speechbrain torchaudio

@@ -1,6 +1,6 @@
-# 🧠 Real-Time AI Sales Assistant
+#🧠 CallScriptor: Real-Time Audio-to-Script Sales Assistant
 
-This local desktop app helps sales reps follow scripts and respond to objections in real time using AI. It listens to live Zoom calls (via VB-Audio Cable), detects key objections, and displays the perfect response on-screen.
+CallScriptor is a local desktop app that helps sales reps stay on script and handle objections seamlessly during live Zoom calls. It listens to real-time audio (via VB-Audio Cable), transcribes speech, detects objections using AI, and instantly displays the best response right on-screen.
 
 ---
 

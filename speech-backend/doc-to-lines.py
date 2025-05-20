@@ -47,6 +47,7 @@ for block in objections_raw:
     response_start = next((i for i, l in enumerate(lines) if "✅ Response" in l), -1)
     response_text = "\n".join(lines[response_start + 1 :]).strip("“”")
 
+    # Add objection to the list
     objections.append(
         {
             "label": title.upper(),
@@ -56,6 +57,8 @@ for block in objections_raw:
         }
     )
 
+# Wrap everything into a result
 result = {"script_lines": script_lines, "objections": objections, "script": raw_input}
 
+# Print final result as JSON
 print(json.dumps(result, indent=2))

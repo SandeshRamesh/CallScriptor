@@ -11,7 +11,7 @@ from sentence_transformers import SentenceTransformer
 DEVICE_INDEX = 30  # VB-Audio index
 SAMPLE_RATE = 48000
 CHUNK = 4000
-THRESHOLD = 0.5  # Lower for debugging; raise once stable
+THRESHOLD = 0.5  # Adjust as needed
 
 # --- Load model & objection script ---
 model_path = os.path.abspath("speech-backend/models/vosk-model-small-en-us-0.15")
@@ -27,12 +27,12 @@ except Exception as e:
 
 # --- Load sentence transformer & embed triggers ---
 embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
-trigger_map = {}  # { trigger_phrase: (np.array(embedding), label) }
+trigger_map = {}  # { trigger_phrase: (embedding_vector, full_objection_obj) }
 
 for obj in objections:
     for trig in obj["triggers"]:
         emb = np.array(embedding_model.encode(trig))
-        trigger_map[trig] = (emb, obj["label"])
+        trigger_map[trig] = (emb, obj)
 
 
 def cosine_sim(a, b):
@@ -65,9 +65,6 @@ stream = p.open(
 stream.start_stream()
 
 # --- Main Loop ---
-# print("[READY] Real-time objection listener started.", flush=True)
-
-
 try:
     buffered_text = ""
     while True:
@@ -77,40 +74,31 @@ try:
             result = json.loads(recognizer.Result())
             final_text = result.get("text", "").strip()
 
-            # Combine with previous buffer
+            # Combine with buffer
             full_phrase = (buffered_text + " " + final_text).strip()
-            buffered_text = ""  # clear after processing
+            buffered_text = ""
 
             if full_phrase:
                 phrase_vec = np.array(embedding_model.encode(full_phrase))
-                matched = False
-                for trig, (vec, label) in trigger_map.items():
+                for trig, (vec, obj) in trigger_map.items():
                     score = cosine_sim(phrase_vec, vec)
-                    # print(
-                    #     f"[DEBUG] Compared to: {trig} -> Score: {score:.2f}", flush=True
-                    # )
                     if score > THRESHOLD:
-                        matchData = {
-                            "label": label,
+                        match_data = {
+                            "label": obj["label"],
                             "trigger": trig,
                             "response": obj["response"],
                         }
-                        print(
-                            json.dumps(matchData), flush=True
-                        )  # Send match data to Electron
-                        matched = True
+                        print(json.dumps(match_data), flush=True)
                         break
-                if not matched:
+                else:
                     print(full_phrase, flush=True)
-
         else:
             partial = json.loads(recognizer.PartialResult()).get("partial", "").strip()
             if partial:
-                buffered_text = partial  # store last spoken phrase
+                buffered_text = partial
 
 except KeyboardInterrupt:
     print("Stopping transcription...", flush=True)
-
 finally:
     stream.stop_stream()
     stream.close()

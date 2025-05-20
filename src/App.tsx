@@ -15,6 +15,7 @@ export default function App() {
   const [rawScriptLines, setRawScriptLines] = useState<string[]>([]);
   const [cleanScriptWords, setCleanScriptWords] = useState<string[]>([]);
   const [objection, setObjection] = useState<ObjectionMatch | null>(null);
+  const [isScriptUploaded, setIsScriptUploaded] = useState(false); // Track script upload
   const bufferRef = useRef('');
 
   // Set transcript state
@@ -36,6 +37,11 @@ export default function App() {
       window.electronAPI.onObjectionDetected((matchData) => {
         console.log('[DEBUG] Objection match data received in React:', matchData);
         setObjection(matchData);
+
+        // Remove the objection after 15 seconds
+        setTimeout(() => {
+          setObjection(null);
+        }, 20000);
       });
     } else {
       console.warn('[DEBUG] electronAPI.onObjectionDetected is not available');
@@ -50,17 +56,22 @@ export default function App() {
       .flat();
     setCleanScriptWords(cleaned);
     setHighlightIdx(0);
+    setIsScriptUploaded(true); // Mark script as uploaded
   };
 
   return (
     <div style={{ padding: 20, fontSize: 24, backgroundColor: 'black', color: 'white', minHeight: '100vh' }}>
-      <ScriptLoader onScriptData={handleScriptData} />
+      {objection && (
+        <Objection objection={objection} />
+      )}
+
+      {!isScriptUploaded && (
+        <ScriptLoader onScriptData={handleScriptData} /> // Show the upload button if script is not uploaded
+      )}
 
       {rawScriptLines.length === 0 && <p>No script loaded yet.</p>}
 
       <TranscriptDisplay scriptLines={rawScriptLines} highlightIdx={highlightIdx} />
-
-      <Objection objection={objection} />
     </div>
   );
 }

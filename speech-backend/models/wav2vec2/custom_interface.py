@@ -153,4 +153,6 @@ class CustomEncoderWav2vec2Classifier(Pretrained):
         return out_prob, score, index, text_lab
 
     def forward(self, wavs, wav_lens=None, normalize=False):
-        return self.encode_batch(wavs=wavs, wav_lens=wav_lens, normalize=normalize)
+        return self.encode_batch(
+            wavs=wavs, wav_lens=wav_lens, normalize=normalize
+        )
